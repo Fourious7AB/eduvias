@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/StudentAdmission/target/Admission-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/StudentAdmission/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/Result-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/teacher-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/Settings-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/Admission-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/NewLibrary-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/RoutineMain-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/AcademicMain-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/auth-service-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/SchoolAccount-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/SchoolAccount-0.0.2-SNAPSHOT/IntelliJ-Project/pom.xml" />
+        <option value="$PROJECT_DIR$/Saas_School_Frontend_New - Copy/auth-service-0.0.1-SNAPSHOT/IntelliJ-Project/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

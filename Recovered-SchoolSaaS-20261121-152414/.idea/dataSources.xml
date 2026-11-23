@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="sas_schoolAdmissionMain@cluster0.urjgexf.mongodb.net" uuid="51909801-b40f-41de-b3cb-8d858641da03">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/Admission-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.urjgexf.mongodb.net/sas_schoolAdmissionMain?retryWrites=true&amp;w=majority</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_libraryDatabase@localhost" uuid="c5a6c9d9-31ef-4421-98a7-6af8af5046dd">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/NewLibrary-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/sas_libraryDatabase?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="mongodb@cluster0.urjgexf.mongodb.net" uuid="8d935458-167a-472f-8d84-b0c048ed1e70">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.urjgexf.mongodb.net/</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="@cluster0.urjgexf.mongodb.net" uuid="9f8292eb-1be9-45fb-a1c3-ac35ee6b50e2">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/Result-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.urjgexf.mongodb.net/</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_teachersdb@localhost" uuid="c54176e1-aea8-4c37-8600-cad24af1d79c">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/teacher-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/sas_teachersdb?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_setting@localhost" uuid="3637fdc2-d891-4c23-be5d-76aa88638e7f">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/Settings-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/sas_setting?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_routineMain@localhost" uuid="6e762f41-0c58-45ef-a3b7-7af40af7c33c">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/RoutineMain-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/sas_routineMain?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="auth_sas@localhost" uuid="2b18d390-a2f8-4456-80c2-003c4e9a7dd4">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/auth-service-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/auth_sas</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="mongodb@cluster0.urjgexf.mongodb.net" uuid="66ea552b-33dd-4a39-9a80-e9b8ae2fe586">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/StudentAdmission/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.urjgexf.mongodb.net/</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_schoolAccount@localhost" uuid="13ef5ad2-d0bb-4461-8e9c-bf7a14242a64">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/SchoolAccount-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/sas_schoolAccount?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="auth_sas@192.168.0.185" uuid="71922310-f07b-43f1-b7fc-4fb3ca53ec2d">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/Saas_School_Frontend_New - Copy/auth-service-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://192.168.0.185:27017/auth_sas?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_academicMain@cluster0.urjgexf.mongodb.net" uuid="b819c372-f603-4b8c-a76b-03d5d22c4b54">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/AcademicMain-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://cluster0.urjgexf.mongodb.net/sas_academicMain/</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_schoolAdmissionMain@192.168.0.185" uuid="0bbe7e29-9b5c-4912-8a57-061a1959c322">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/StudentAdmission/target/Admission-0.0.1-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://192.168.0.185:27017/sas_schoolAdmissionMain?directConnection=true&amp;appName=mongosh</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="sas_schoolAccount@localhost" uuid="ac542b10-c81e-423e-96c7-7ab91d033c00">
+      <driver-ref>mongo.4</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/SchoolAccount-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/resources/application.properties</remarks>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb://localhost:27017/sas_schoolAccount</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

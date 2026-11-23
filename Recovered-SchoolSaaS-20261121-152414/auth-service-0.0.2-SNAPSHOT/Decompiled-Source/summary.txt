@@ -1,0 +1,2 @@
+Summary for C:\Users\VAIS-DT4\Desktop\sas_school\auth-service-0.0.2-SNAPSHOT.jar
+Decompiled with CFR 0.152

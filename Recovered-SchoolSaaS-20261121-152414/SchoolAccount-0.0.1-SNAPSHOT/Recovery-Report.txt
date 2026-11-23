@@ -1,0 +1,104 @@
+﻿JAR FILE: C:\Users\VAIS-DT4\Desktop\sas_school\SchoolAccount-0.0.1-SNAPSHOT.jar
+PROJECT: SchoolAccount-0.0.1-SNAPSHOT
+CFR EXIT CODE: 0
+EXTRACTION EXIT CODE: 0
+RECOVERED JAVA FILE COUNT: 135
+
+===== ORIGINAL MANIFEST =====
+Manifest-Version: 1.0
+Created-By: Maven JAR Plugin 3.4.2
+Build-Jdk-Spec: 17
+Implementation-Title: SchoolAccount
+Implementation-Version: 0.0.1-SNAPSHOT
+Main-Class: org.springframework.boot.loader.launch.JarLauncher
+Start-Class: com.schoolaccount.SchoolAccount.SchoolAccountApplication
+Spring-Boot-Version: 3.4.2
+Spring-Boot-Classes: BOOT-INF/classes/
+Spring-Boot-Lib: BOOT-INF/lib/
+Spring-Boot-Classpath-Index: BOOT-INF/classpath.idx
+Spring-Boot-Layers-Index: BOOT-INF/layers.idx
+
+
+===== LIKELY MAIN CLASSES =====
+C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\SchoolAccount-0.0.1-SNAPSHOT\Decompiled-Source\com\schoolaccount\SchoolAccount\SchoolAccountApplication.java
+
+===== PACKAGED DEPENDENCIES =====
+attoparser-2.0.7.RELEASE.jar
+barcodes-9.0.0.jar
+bouncy-castle-connector-9.0.0.jar
+bson-5.2.1.jar
+bson-record-codec-5.2.1.jar
+classmate-1.7.0.jar
+commons-9.0.0.jar
+commons-codec-1.17.2.jar
+commons-lang3-3.17.0.jar
+commons-text-1.3.jar
+font-asian-9.0.0.jar
+forms-9.0.0.jar
+hibernate-validator-8.0.2.Final.jar
+hyph-9.0.0.jar
+io-9.0.0.jar
+jackson-annotations-2.18.2.jar
+jackson-core-2.18.2.jar
+jackson-databind-2.18.2.jar
+jackson-datatype-jdk8-2.18.2.jar
+jackson-datatype-jsr310-2.18.2.jar
+jackson-module-parameter-names-2.18.2.jar
+jakarta.annotation-api-2.1.1.jar
+jakarta.validation-api-3.0.2.jar
+javassist-3.29.0-GA.jar
+javax.activation-api-1.2.0.jar
+jaxb-api-2.3.1.jar
+jboss-logging-3.6.1.Final.jar
+json-20231013.jar
+jul-to-slf4j-2.0.16.jar
+kernel-9.0.0.jar
+layout-9.0.0.jar
+log4j-api-2.24.3.jar
+log4j-to-slf4j-2.24.3.jar
+logback-classic-1.5.16.jar
+logback-core-1.5.16.jar
+logging-interceptor-3.10.0.jar
+lombok-1.18.36.jar
+micrometer-commons-1.14.3.jar
+micrometer-observation-1.14.3.jar
+mongodb-driver-core-5.2.1.jar
+mongodb-driver-sync-5.2.1.jar
+ognl-3.3.4.jar
+okhttp-3.10.0.jar
+okio-1.14.0.jar
+pdfa-9.0.0.jar
+pdfua-9.0.0.jar
+razorpay-java-1.4.3.jar
+sign-9.0.0.jar
+slf4j-api-2.0.16.jar
+snakeyaml-2.3.jar
+spring-aop-6.2.2.jar
+spring-beans-6.2.2.jar
+spring-boot-3.4.2.jar
+spring-boot-autoconfigure-3.4.2.jar
+spring-boot-jarmode-tools-3.4.2.jar
+spring-context-6.2.2.jar
+spring-core-6.2.2.jar
+spring-data-commons-3.4.2.jar
+spring-data-mongodb-4.4.2.jar
+spring-expression-6.2.2.jar
+spring-jcl-6.2.2.jar
+spring-tx-6.2.2.jar
+spring-web-6.2.2.jar
+spring-webmvc-6.2.2.jar
+styled-xml-parser-9.0.0.jar
+svg-9.0.0.jar
+thymeleaf-3.1.2.RELEASE.jar
+tomcat-embed-core-10.1.34.jar
+tomcat-embed-el-10.1.34.jar
+tomcat-embed-websocket-10.1.34.jar
+unbescape-1.1.6.RELEASE.jar
+
+===== EMBEDDED POM =====
+C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\SchoolAccount-0.0.1-SNAPSHOT\Extracted\META-INF\maven\com.schoolaccount\SchoolAccount\pom.xml
+
+===== OUTPUT DIRECTORIES =====
+Source: C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\SchoolAccount-0.0.1-SNAPSHOT\Decompiled-Source
+Extracted: C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\SchoolAccount-0.0.1-SNAPSHOT\Extracted
+IntelliJ project: C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\SchoolAccount-0.0.1-SNAPSHOT\IntelliJ-Project

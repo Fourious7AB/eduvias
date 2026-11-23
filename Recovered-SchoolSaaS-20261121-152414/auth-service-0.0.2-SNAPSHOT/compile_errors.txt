@@ -1,0 +1,159 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.example:auth-service >----------------------
+[INFO] Building auth-service 0.0.2-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ auth-service ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ auth-service ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 52 source files with javac [debug release 17] to target\classes
+[INFO] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/security/SecurityConfig.java: Some input files use or override a deprecated API.
+[INFO] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/security/SecurityConfig.java: Recompile with -Xlint:deprecation for details.
+[INFO] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFileEntries.java: Some input files use unchecked or unsafe operations.
+[INFO] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFileEntries.java: Recompile with -Xlint:unchecked for details.
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/archive/Archive.java:[13,18] cannot find symbol
+  symbol: class Entry
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFile.java:[182,37] incompatible types: java.util.Iterator<org.springframework.boot.loader.jar.JarEntry> cannot be converted to java.util.Iterator<java.util.jar.JarEntry>
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFileEntries.java:[190,17] cannot find symbol
+  symbol:   variable v0
+  location: class org.springframework.boot.loader.jar.JarFileEntries
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFileEntries.java:[192,17] cannot find symbol
+  symbol:   variable v0
+  location: class org.springframework.boot.loader.jar.JarFileEntries
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jarmode/JarModeLauncher.java:[24,34] incompatible types: java.lang.Object cannot be converted to org.springframework.boot.loader.jarmode.JarMode
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/PropertiesLauncher.java:[89,30] incompatible types: java.lang.Object cannot be converted to java.lang.String
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/PropertiesLauncher.java:[270,48] incompatible types: java.lang.Class<capture#1 of ?> cannot be converted to java.lang.Class<java.lang.ClassLoader>
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[43,32] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+  required: S
+  found:    java.lang.Object
+  reason: inference variable S has incompatible bounds
+    upper bounds: com.neel.Auth.model.AuthUser
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[63,36] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+  required: S
+  found:    java.lang.Object
+  reason: inference variable S has incompatible bounds
+    upper bounds: com.neel.Auth.model.AuthUser
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[76,32] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+  required: S
+  found:    java.lang.Object
+  reason: inference variable S has incompatible bounds
+    upper bounds: com.neel.Auth.model.AuthUser
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[106,49] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+  required: S
+  found:    java.lang.Object
+  reason: inference variable S has incompatible bounds
+    upper bounds: com.neel.Auth.model.AuthUser
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/Handler.java:[387,25] incompatible types: java.lang.ref.SoftReference<java.lang.Object> cannot be converted to java.lang.ref.SoftReference<java.util.Map<java.io.File,org.springframework.boot.loader.jar.JarFile>>
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[83,33] incompatible types: inference variable T has incompatible bounds
+    equality constraints: java.lang.String
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[205,37] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.neel.Auth.ApiResponseDto
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[208,84] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.neel.Auth.ApiResponseDto
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[216,37] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.neel.Auth.ApiResponseDto
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[218,80] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.neel.Auth.ApiResponseDto
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[225,84] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.neel.Auth.model.ResponseMessage
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[227,33] incompatible types: inference variable T has incompatible bounds
+    equality constraints: com.neel.Auth.model.ResponseMessage
+    lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[232,33] incompatible types: inference variable T has incompatible bounds
+    equality constraints: java.lang.String
+    lower bounds: java.lang.Object
+[INFO] 20 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.331 s
+[INFO] Finished at: 2026-11-21T23:36:03+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project auth-service: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/archive/Archive.java:[13,18] cannot find symbol
+[ERROR]   symbol: class Entry
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFile.java:[182,37] incompatible types: java.util.Iterator<org.springframework.boot.loader.jar.JarEntry> cannot be converted to java.util.Iterator<java.util.jar.JarEntry>
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFileEntries.java:[190,17] cannot find symbol
+[ERROR]   symbol:   variable v0
+[ERROR]   location: class org.springframework.boot.loader.jar.JarFileEntries
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/JarFileEntries.java:[192,17] cannot find symbol
+[ERROR]   symbol:   variable v0
+[ERROR]   location: class org.springframework.boot.loader.jar.JarFileEntries
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jarmode/JarModeLauncher.java:[24,34] incompatible types: java.lang.Object cannot be converted to org.springframework.boot.loader.jarmode.JarMode
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/PropertiesLauncher.java:[89,30] incompatible types: java.lang.Object cannot be converted to java.lang.String
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/PropertiesLauncher.java:[270,48] incompatible types: java.lang.Class<capture#1 of ?> cannot be converted to java.lang.Class<java.lang.ClassLoader>
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[43,32] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+[ERROR]   required: S
+[ERROR]   found:    java.lang.Object
+[ERROR]   reason: inference variable S has incompatible bounds
+[ERROR]     upper bounds: com.neel.Auth.model.AuthUser
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[63,36] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+[ERROR]   required: S
+[ERROR]   found:    java.lang.Object
+[ERROR]   reason: inference variable S has incompatible bounds
+[ERROR]     upper bounds: com.neel.Auth.model.AuthUser
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[76,32] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+[ERROR]   required: S
+[ERROR]   found:    java.lang.Object
+[ERROR]   reason: inference variable S has incompatible bounds
+[ERROR]     upper bounds: com.neel.Auth.model.AuthUser
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/service/AuthService.java:[106,49] method save in interface org.springframework.data.repository.CrudRepository<T,ID> cannot be applied to given types;
+[ERROR]   required: S
+[ERROR]   found:    java.lang.Object
+[ERROR]   reason: inference variable S has incompatible bounds
+[ERROR]     upper bounds: com.neel.Auth.model.AuthUser
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/org/springframework/boot/loader/jar/Handler.java:[387,25] incompatible types: java.lang.ref.SoftReference<java.lang.Object> cannot be converted to java.lang.ref.SoftReference<java.util.Map<java.io.File,org.springframework.boot.loader.jar.JarFile>>
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[83,33] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: java.lang.String
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[205,37] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.neel.Auth.ApiResponseDto
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[208,84] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.neel.Auth.ApiResponseDto
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[216,37] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.neel.Auth.ApiResponseDto
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[218,80] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.neel.Auth.ApiResponseDto
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[225,84] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.neel.Auth.model.ResponseMessage
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[227,33] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: com.neel.Auth.model.ResponseMessage
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] /C:/Users/arupb/OneDrive/Desktop/DonotDeleteIt/Recovered-SchoolSaaS-20261121-152414/auth-service-0.0.2-SNAPSHOT/IntelliJ-Project/src/main/java/com/neel/Auth/controller/AuthController.java:[232,33] incompatible types: inference variable T has incompatible bounds
+[ERROR]     equality constraints: java.lang.String
+[ERROR]     lower bounds: java.lang.Object
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

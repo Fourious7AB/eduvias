@@ -1,0 +1,17 @@
+com\neel\Auth\model\Admission.class
+com\neel\Auth\service\AuthService.class
+com\neel\Auth\model\PasswordResetToken.class
+com\neel\Auth\model\ResponseMessage.class
+com\neel\Auth\request\JwtRequestFilter.class
+com\neel\Auth\model\AuthUser.class
+com\neel\Auth\ApiResponseDto.class
+com\neel\Auth\security\SecurityConfig.class
+com\neel\Auth\config\EmailConfig.class
+com\neel\Auth\service\JwtTokenService.class
+com\neel\Auth\config\CorsConfig.class
+com\neel\Auth\model\School.class
+com\neel\Auth\service\EmailService.class
+com\neel\Auth\config\AppConfig.class
+com\neel\Auth\controller\AuthController.class
+com\neel\Auth\AuthApplication.class
+com\neel\Auth\repo\AuthUserRepository.class

@@ -1,0 +1,87 @@
+﻿JAR FILE: C:\Users\VAIS-DT4\Desktop\sas_school\auth-service-0.0.2-SNAPSHOT.jar
+PROJECT: auth-service-0.0.2-SNAPSHOT
+CFR EXIT CODE: 0
+EXTRACTION EXIT CODE: 0
+RECOVERED JAVA FILE COUNT: 52
+
+===== ORIGINAL MANIFEST =====
+Manifest-Version: 1.0
+Created-By: Maven JAR Plugin 3.3.0
+Build-Jdk-Spec: 17
+Implementation-Title: auth-service
+Implementation-Version: 0.0.2-SNAPSHOT
+Main-Class: org.springframework.boot.loader.JarLauncher
+Start-Class: com.neel.Auth.AuthApplication
+Spring-Boot-Version: 3.1.0
+Spring-Boot-Classes: BOOT-INF/classes/
+Spring-Boot-Lib: BOOT-INF/lib/
+Spring-Boot-Classpath-Index: BOOT-INF/classpath.idx
+Spring-Boot-Layers-Index: BOOT-INF/layers.idx
+
+
+===== LIKELY MAIN CLASSES =====
+C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\auth-service-0.0.2-SNAPSHOT\Decompiled-Source\com\neel\Auth\AuthApplication.java
+
+===== PACKAGED DEPENDENCIES =====
+angus-activation-2.0.0.jar
+bson-4.9.1.jar
+bson-record-codec-4.9.1.jar
+classmate-1.5.1.jar
+hibernate-validator-8.0.0.Final.jar
+jackson-annotations-2.15.0.jar
+jackson-core-2.15.0.jar
+jackson-databind-2.15.0.jar
+jackson-datatype-jdk8-2.15.0.jar
+jackson-datatype-jsr310-2.15.0.jar
+jackson-module-parameter-names-2.15.0.jar
+jakarta.activation-api-2.1.2.jar
+jakarta.annotation-api-2.1.1.jar
+jakarta.mail-1.1.0.jar
+jakarta.servlet-api-5.0.0.jar
+jakarta.validation-api-3.0.2.jar
+jboss-logging-3.5.0.Final.jar
+jjwt-api-0.11.5.jar
+jjwt-impl-0.11.5.jar
+jjwt-jackson-0.11.5.jar
+jul-to-slf4j-2.0.7.jar
+log4j-api-2.20.0.jar
+log4j-to-slf4j-2.20.0.jar
+logback-classic-1.4.7.jar
+logback-core-1.4.7.jar
+lombok-1.18.26.jar
+micrometer-commons-1.11.0.jar
+micrometer-observation-1.11.0.jar
+mongodb-driver-core-4.9.1.jar
+mongodb-driver-sync-4.9.1.jar
+slf4j-api-2.0.7.jar
+snakeyaml-1.33.jar
+spring-aop-6.0.9.jar
+spring-beans-6.0.9.jar
+spring-boot-3.1.0.jar
+spring-boot-autoconfigure-3.1.0.jar
+spring-boot-jarmode-layertools-3.1.0.jar
+spring-context-6.0.9.jar
+spring-context-support-6.0.9.jar
+spring-core-6.0.9.jar
+spring-data-commons-3.1.0.jar
+spring-data-mongodb-4.1.0.jar
+spring-expression-6.0.9.jar
+spring-jcl-6.0.9.jar
+spring-security-config-6.1.0.jar
+spring-security-core-6.1.0.jar
+spring-security-crypto-6.1.0.jar
+spring-security-web-6.1.0.jar
+spring-tx-6.0.9.jar
+spring-web-6.0.9.jar
+spring-webmvc-6.0.9.jar
+tomcat-embed-core-10.1.8.jar
+tomcat-embed-el-10.1.8.jar
+tomcat-embed-websocket-10.1.8.jar
+
+===== EMBEDDED POM =====
+C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\auth-service-0.0.2-SNAPSHOT\Extracted\META-INF\maven\com.example\auth-service\pom.xml
+
+===== OUTPUT DIRECTORIES =====
+Source: C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\auth-service-0.0.2-SNAPSHOT\Decompiled-Source
+Extracted: C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\auth-service-0.0.2-SNAPSHOT\Extracted
+IntelliJ project: C:\JarRecovery\Recovered-SchoolSaaS-20261121-152414\auth-service-0.0.2-SNAPSHOT\IntelliJ-Project

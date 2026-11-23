@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="RoutineMain" />
+        <module name="SchoolAccount (2)" />
+        <module name="SchoolAccount (1)" />
+        <module name="auth-service (1)" />
+        <module name="Result" />
+        <module name="auth-service" />
+        <module name="teacher" />
+        <module name="NewLibrary" />
+        <module name="auth-service (2)" />
+        <module name="auth-service (3)" />
+        <module name="auth-service (4)" />
+        <module name="SchoolAccount" />
+        <module name="AcademicMain" />
+        <module name="Settings" />
+      </profile>
+      <profile name="Annotation profile for Admission" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="Admission" />
+        <module name="Admission (1)" />
+        <module name="Admission (2)" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AcademicMain" options="-parameters" />
+      <module name="Admission" options="-parameters" />
+      <module name="Admission (1)" options="-parameters" />
+      <module name="Admission (2)" options="-parameters" />
+      <module name="NewLibrary" options="-parameters" />
+      <module name="Result" options="-parameters" />
+      <module name="RoutineMain" options="-parameters" />
+      <module name="SchoolAccount" options="-parameters" />
+      <module name="SchoolAccount (1)" options="-parameters" />
+      <module name="SchoolAccount (2)" options="-parameters" />
+      <module name="Settings" options="-parameters" />
+      <module name="auth-service" options="-parameters" />
+      <module name="auth-service (1)" options="-parameters" />
+      <module name="auth-service (2)" options="-parameters" />
+      <module name="auth-service (3)" options="-parameters" />
+      <module name="auth-service (4)" options="-parameters" />
+      <module name="teacher" options="-parameters" />
+    </option>
+  </component>
+</project>
