@@ -9,6 +9,7 @@ com\result\Result\model\AdditionalMarksRegister.class
 com\result\Result\service\MarksRegisterService.class
 com\result\Result\Dto\StudentDetailsResponse.class
 com\result\Result\controller\MarksRegisterController.class
+com\result\Result\service\MarksheetService$GradeTierTemplate.class
 com\result\Result\model\MarksRegister.class
 com\result\Result\repo\AdditionalMarksRegisterRepository.class
 com\result\Result\controller\MarksheetController.class
@@ -22,7 +23,9 @@ com\result\Result\controller\CriteriaController.class
 com\result\Result\controller\ResultPublishDateController.class
 com\result\Result\config\CorsConfig.class
 com\result\Result\controller\GradeSystemController.class
+com\result\Result\service\MarksheetService$AnnualSubjectEntry.class
 com\result\Result\controller\ProjectMarksController.class
+com\result\Result\service\MarksheetService$AnnualExamContext.class
 com\result\Result\model\ProjectMarks.class
 com\result\Result\repo\ResultPublishDateRepository.class
 com\result\Result\repo\CriteriaRepository.class

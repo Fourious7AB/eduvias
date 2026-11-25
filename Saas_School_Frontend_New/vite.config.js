@@ -9,6 +9,10 @@ export default defineConfig({
     open:true,
     port:5173,
     host:true,
+    allowedHosts: [
+      '.ngrok-free.dev',
+      '.ngrok-free.app',
+    ],
     proxy: {
       '/service1': {
         target: 'http://localhost:8085',

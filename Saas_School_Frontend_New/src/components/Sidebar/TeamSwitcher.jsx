@@ -7,39 +7,41 @@ import w from "@/assets/w.png"
 import { useSidebar } from '@/components/ui/sidebar'
 import schoolLogo from "@/assets/schoolLogo.png"
 import schoolLogoWhite1 from "@/assets/schoolLogoWhite1.png"
-
-import vaisWhite from "@/assets/vaisWhite.png"
-import vaisBlack from "@/assets/vaisBlack.png"
-import vaisFav1 from "@/assets/vaisFav1.jpg"
-import vaisFav from "@/assets/vaisFav.png"
-import logo3 from "@/assets/logo3.png"
 import { useTheme } from "@/context/ThemeContext";
+
 const TeamSwitcher = () => {
-const {state} = useSidebar()
-// console.log("state : " ,state)
-const { theme } = useTheme();
-const version= import.meta.env.VITE_REACT_VERSION
+    const { state } = useSidebar();
+    const { theme } = useTheme();
+    const version = import.meta.env.VITE_REACT_VERSION;
 
     return (
         <SidebarMenu>
             <SidebarMenuItem>
                 {/* for logo  */}
-                <div className={`flex justify-center items-center border-b-[1px] border-[#9850b2] border-opacity-1 pb-8 pt-2 ${state === 'collapsed' ? 'border-none pb-0' : 'block'} `}>
-                    {
-                        state === 'collapsed' ? (
-                            <img src={w} alt="logo" className="w-30 h-10" />
-                            // <img src={vaisFav} alt="logo" className="w-30 h-10" />
-                        ) : (
-                            theme === 'light' ? (
-                                <img src={schoolLogoWhite1} alt="logo" className="w-30 h-10" />
-                                // <img src={vaisWhite} alt="logo" className="w-30 h-10" />
-                            ) : (
-                            <img src={schoolLogo} alt="logo" className="w-30 h-10" />
-                            // <img src={logo3} alt="logo" className="w-32 h-24" />
-                            // <img src={vaisBlack} alt="logo" className="w-32 h-24" /> 
-                            )
-                        )
-                    }  
+                <div
+                    className={`flex justify-center items-center pt-2 ${
+                        state === 'collapsed'
+                            ? 'border-none pb-0'
+                            : 'border-b border-[#9850b2] pb-8 px-2'
+                    }`}
+                >
+                    {state === 'collapsed' ? (
+                        <img
+                            src={w}
+                            alt="VAIS Academy"
+                            width={211}
+                            height={211}
+                            className="h-9 w-9 object-contain"
+                        />
+                    ) : (
+                        <img
+                            src={theme === 'light' ? schoolLogoWhite1 : schoolLogo}
+                            alt="VAIS Academy"
+                            width={1024}
+                            height={212}
+                            className="h-10 w-auto max-w-full object-contain"
+                        />
+                    )}
                 </div>
                 {/* for version  */}
                 <div className=" flex  text-md leading-tight ml-10 justify-between mt-4">

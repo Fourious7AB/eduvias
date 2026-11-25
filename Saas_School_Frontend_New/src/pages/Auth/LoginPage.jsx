@@ -95,7 +95,13 @@ const LoginPage = () => {
         >
           <div className="my-3 flex justify-center items-center flex-col">
             {/* <Lottie animationData={icon1} className='w-32 h-32 ' /> */}
-            <img src={schoolLogo} className="w-Full h-32" alt="school logo" />
+            <img
+              src={schoolLogo}
+              width={1024}
+              height={212}
+              className="w-auto max-w-full h-16 object-contain mb-2"
+              alt="VAIS Academy"
+            />
             <p className="text-sm text-center text-wrap">
               Login to see our dashboard
             </p>

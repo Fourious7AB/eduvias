@@ -63,5 +63,15 @@ public class MarksheetController {
     public ResponseEntity<ResponseMessage> getStudentCumulativeMarksheetWithSchool(@PathVariable String schoolId, @RequestParam String className, @RequestParam String section, @RequestParam int roll) {
         return this.marksheetService.calculateStudentCumulativeMarksheet(className, section, roll, schoolId);
     }
+
+    @GetMapping(value={"/annual/{schoolId}"})
+    public ResponseEntity<ResponseMessage> getAnnualReportCard(@PathVariable String schoolId, @RequestParam String className, @RequestParam String section) {
+        return this.marksheetService.generateAnnualReportCard(className, section, schoolId);
+    }
+
+    @GetMapping(value={"/annual/student/{schoolId}"})
+    public ResponseEntity<ResponseMessage> getStudentAnnualReportCard(@PathVariable String schoolId, @RequestParam String className, @RequestParam String section, @RequestParam int roll) {
+        return this.marksheetService.generateStudentAnnualReportCard(className, section, roll, schoolId);
+    }
 }
 

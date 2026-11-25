@@ -1,15 +1,16 @@
-import React from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { Button } from "../ui/button";
 import { useTheme } from "@/context/ThemeContext";
 import { useSelector } from "react-redux";
 import { saveAs } from "file-saver";
+import { toast } from "sonner";
 import {
   Page,
   Text,
@@ -21,76 +22,105 @@ import {
   pdf,
   Link,
 } from "@react-pdf/renderer";
-import { Download } from "lucide-react";
+import { Download, ExternalLink, Loader2 } from "lucide-react";
+import principalSignature from "@/assets/principalSignature.png";
 import {
   formatDateDDMMYYYY,
   recalculateMarksheet,
   resolveSubjectFullMarks,
 } from "@/utils/result/resultHelpers";
+import "@/pages/Result/MarksheetPage.css";
 
 const styles = StyleSheet.create({
   page: {
     backgroundColor: "#fff",
-    padding: 16,
-    fontSize: 10,
+    paddingTop: 10,
+    paddingBottom: 22,
+    paddingHorizontal: 14,
+    fontSize: 9,
     fontFamily: "Helvetica",
   },
   header: {
     border: "1pt solid #222",
-    padding: 8,
-    marginBottom: 8,
+    paddingVertical: 6,
+    paddingHorizontal: 10,
+    marginBottom: 5,
   },
   schoolName: {
-    fontSize: 14,
+    fontSize: 14.5,
     fontWeight: "bold",
     textAlign: "center",
+    marginBottom: 2.5,
+  },
+  schoolAddress: {
+    fontSize: 9,
+    fontStyle: "italic",
+    textAlign: "center",
+    lineHeight: 1.28,
+    maxWidth: 215,
     marginBottom: 2,
   },
-  reportTitle: {
-    fontSize: 14,
-    fontWeight: "medium",
+  schoolEmail: {
+    fontSize: 9,
     textAlign: "center",
-    paddingTop: 4,
-    paddingBottom: 2,
+    lineHeight: 1.22,
+    marginBottom: 1.5,
+  },
+  schoolPhone: {
+    fontSize: 9,
+    textAlign: "center",
+    lineHeight: 1.22,
+  },
+  reportTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingTop: 3,
+    paddingBottom: 1,
   },
   reportsubTitle: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: "normal",
     textAlign: "center",
-    marginBottom: 4,
+    marginBottom: 3,
   },
   sectionTitle: {
     backgroundColor: "#ffbb00",
-    fontWeight: "normal",
-    paddingTop: 4,
-    paddingBottom: 4,
-    fontSize: 12,
+    fontWeight: "bold",
+    paddingVertical: 2.5,
+    fontSize: 10,
     borderTop: "1pt solid #222",
     borderBottom: "1pt solid #222",
     textAlign: "center",
   },
   sectionAcademicTitle: {
-    fontWeight: "normal",
-    paddingTop: 4,
-    paddingBottom: 4,
-    fontSize: 12,
+    fontWeight: "bold",
+    paddingVertical: 2.5,
+    fontSize: 10,
     textAlign: "center",
   },
   detailsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 2,
   },
   detailsCol: {
     width: "48%",
-    padding: 4,
+    paddingHorizontal: 5,
+    paddingVertical: 3,
+  },
+  detailText: {
+    fontSize: 8.5,
+    paddingBottom: 2,
+  },
+  detailTextLast: {
+    fontSize: 8.5,
   },
   table: {
     borderRight: "1pt solid #222",
     borderLeft: "1pt solid #222",
     borderTop: "1pt solid #222",
-    marginTop: 6,
-    marginBottom: 6,
+    marginTop: 4,
+    marginBottom: 4,
   },
   tableHeader: {
     flexDirection: "row",
@@ -99,8 +129,10 @@ const styles = StyleSheet.create({
   },
   tableCellHeader: {
     flex: 1,
-    fontWeight: "normal",
-    padding: 2,
+    fontWeight: "bold",
+    fontSize: 8,
+    paddingVertical: 2,
+    paddingHorizontal: 2,
     borderRight: "1pt solid #222",
     textAlign: "center",
   },
@@ -110,16 +142,17 @@ const styles = StyleSheet.create({
   },
   tableCell: {
     flex: 1,
-    padding: 2,
+    paddingVertical: 1.8,
+    paddingHorizontal: 2,
     fontSize: 8,
     borderRight: "1pt solid #222",
     textAlign: "center",
   },
   coScholasticHeader: {
     backgroundColor: "#b6d6f6",
-    fontWeight: "medium",
-    padding: 2,
-    fontSize: 10,
+    fontWeight: "bold",
+    paddingVertical: 2.5,
+    fontSize: 9.5,
     textAlign: "center",
     borderBottom: "1pt solid #222",
   },
@@ -129,30 +162,45 @@ const styles = StyleSheet.create({
   },
   coScholasticCell: {
     flex: 2,
-    padding: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 4,
+    fontSize: 8.5,
     borderRight: "1pt solid #222",
   },
   coScholasticCellGrade: {
     flex: 1,
-    padding: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 4,
+    fontSize: 8.5,
     textAlign: "center",
+  },
+  signatureBox: {
+    border: "1pt solid #222",
+    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    marginTop: 5,
   },
   signatureRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 24,
-    fontSize: 10,
+    alignItems: "flex-end",
+    marginTop: 4,
+    fontSize: 9,
   },
   gradingTable: {
-    marginTop: 12,
-    border: "1pt solid #222",
+    marginTop: 4,
+    borderLeft: "1pt solid #222",
+    borderRight: "1pt solid #222",
+    borderTop: "1pt solid #222",
   },
   gradingHeader: {
     backgroundColor: "#8c6bc5",
-    padding: 4,
+    paddingVertical: 2.5,
     color: "white",
+    fontWeight: "bold",
     textAlign: "center",
-    fontSize: 10,
+    fontSize: 9.5,
     borderBottom: "1pt solid #222",
   },
   gradingRow: {
@@ -161,18 +209,20 @@ const styles = StyleSheet.create({
   },
   gradingCell: {
     flex: 1,
-    padding: 3,
-    fontSize: 8,
+    paddingVertical: 1.8,
+    paddingHorizontal: 2,
+    fontSize: 7.5,
     borderRight: "1pt solid #222",
     textAlign: "center",
   },
   notesSection: {
-    marginTop: 12,
-    fontSize: 9,
+    marginTop: 5,
+    fontSize: 8,
   },
-  noteItem: {
+  noteRow: {
     flexDirection: "row",
-    marginBottom: 4,
+    gap: 18,
+    marginBottom: 3,
   },
   capitalize: {
     textTransform: "capitalize",
@@ -200,12 +250,21 @@ const PdfDocument = ({
   ].filter(Boolean);
   const formattedAddress = addressParts.length > 0 ? addressParts.join(", ") : "-";
   const formattedDob = formatDateDDMMYYYY(details.dob);
+  const resolvedPrincipalSignature = signaturePreview || principalSignature;
+
+  const cleanSchoolName = (institute?.schoolName || "").trim() || "School Report Card";
+  const cleanSchoolAddress = (institute?.schoolAddress || "")
+    .trim()
+    .replace(/:-\s+/g, ":-\u00A0");
+  const cleanSchoolEmail = (institute?.schoolEmail || "").trim();
+  const cleanSchoolPhone = (institute?.schoolPhone || "").trim();
+  const cleanSchoolWebsite = (institute?.schoolWebsite || "").trim();
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         {/* Header */}
-        <View style={styles.header}>
+        <View style={styles.header} wrap={false}>
           <View
             style={{
               flexDirection: "row",
@@ -214,83 +273,74 @@ const PdfDocument = ({
             }}
           >
             {/* Left Section: Logo */}
-            <View style={{ alignItems: "center", width: 90 }}>
+            <View style={{ alignItems: "center", width: 105 }}>
               {institute?.schoolLogo ? (
                 <Image
                   src={institute.schoolLogo}
-                  style={{ width: 70, height: 70 }}
+                  style={{ width: 58, height: 58, objectFit: "contain" }}
                 />
               ) : (
-                <View style={{ width: 70, height: 70 }} />
+                <View style={{ width: 58, height: 58 }} />
               )}
             </View>
 
             {/* Center Section: School Name and Details */}
-            <View style={{ flex: 1, alignItems: "center" }}>
-              <Text style={styles.schoolName}>
-                {institute?.schoolName || "School Report Card"}
-              </Text>
-              {institute?.schoolAddress ? (
+            <View style={{ flex: 1, alignItems: "center", paddingHorizontal: 4 }}>
+              <Text style={styles.schoolName}>{cleanSchoolName}</Text>
+              {cleanSchoolAddress ? (
                 <Text
-                  style={{
-                    fontSize: 9,
-                    textAlign: "center",
-                    marginBottom: 2,
-                    fontStyle: "italic",
-                    width: "70%",
-                  }}
+                  style={styles.schoolAddress}
+                  hyphenationCallback={(word) => [word]}
                 >
-                  {institute.schoolAddress}
+                  {cleanSchoolAddress}
                 </Text>
               ) : null}
-              {institute?.schoolEmail ? (
-                <Text style={{ fontSize: 9, textAlign: "center" }}>
-                  {institute.schoolEmail}
-                </Text>
+              {cleanSchoolEmail ? (
+                <Text style={styles.schoolEmail}>{cleanSchoolEmail}</Text>
               ) : null}
-              {institute?.schoolPhone ? (
-                <Text style={{ fontSize: 9, textAlign: "center" }}>
-                  Contact No : {institute.schoolPhone}
+              {cleanSchoolPhone ? (
+                <Text style={styles.schoolPhone}>
+                  Contact No : {cleanSchoolPhone}
                 </Text>
               ) : null}
 
-              {institute?.schoolWebsite ? (
+              {cleanSchoolWebsite ? (
                 <View
                   style={{
                     flexDirection: "row",
                     justifyContent: "center",
-                    marginTop: 4,
+                    marginTop: 2,
                   }}
                 >
-                  <Text style={{ fontSize: 9 }}>School Website: </Text>
+                  <Text style={{ fontSize: 8.5 }}>School Website: </Text>
                   <Link
                     src={
-                      institute.schoolWebsite.startsWith("http")
-                        ? institute.schoolWebsite
-                        : `https://${institute.schoolWebsite}`
+                      cleanSchoolWebsite.startsWith("http")
+                        ? cleanSchoolWebsite
+                        : `https://${cleanSchoolWebsite}`
                     }
                     style={{
-                      fontSize: 9,
+                      fontSize: 8.5,
                       color: "#e74c3c",
                       textDecoration: "underline",
                     }}
                   >
-                    {institute.schoolWebsite}
+                    {cleanSchoolWebsite}
                   </Link>
                 </View>
               ) : null}
             </View>
 
             {/* Right Section: School Code */}
-            <View style={{ alignItems: "center", width: 100 }}>
+            <View style={{ alignItems: "center", width: 105 }}>
               {institute?.schoolRegistrationNumber ? (
-                <Text style={{ fontSize: 8, marginBottom: 2 }}>
-                  Registration No : {institute.schoolRegistrationNumber}
+                <Text style={{ fontSize: 8, marginBottom: 2, textAlign: "center" }}>
+                  Registration No : {String(institute.schoolRegistrationNumber).trim()}
                 </Text>
               ) : null}
               {institute?.schoolCode ? (
-                <Text style={{ fontSize: 8, marginBottom: 2 }}>
-                  School Code : {institute.schoolCode}
+                <Text style={{ fontSize: 8, textAlign: "center" }}>
+                  School Code : {String(institute.schoolCode).trim()}
                 </Text>
               ) : null}
             </View>
@@ -306,6 +356,7 @@ const PdfDocument = ({
             border: "1pt solid #222",
             borderRadius: 4,
           }}
+          wrap={false}
         >
           <Text style={styles.reportTitle}>
             Report Card ({marksheetData?.examType || "-"})
@@ -318,26 +369,26 @@ const PdfDocument = ({
           <Text style={styles.sectionTitle}>Student Details</Text>
           <View style={styles.detailsRow}>
             <View style={styles.detailsCol}>
-              <Text style={{ paddingBottom: 4 }}>
+              <Text style={styles.detailText}>
                 Admission No : {details.admissionNumber || "-"}
               </Text>
-              <Text style={{ paddingBottom: 4, textTransform: "capitalize" }}>
+              <Text style={[styles.detailText, styles.capitalize]}>
                 Student Name : {studentName}
               </Text>
-              <Text style={{ paddingBottom: 4, textTransform: "capitalize" }}>
+              <Text style={[styles.detailText, styles.capitalize]}>
                 Mother&apos;s Name : {details.motherName || "-"}
               </Text>
-              <Text style={{ paddingBottom: 4, textTransform: "capitalize" }}>
+              <Text style={[styles.detailText, styles.capitalize]}>
                 Father&apos;s Name : {details.fatherName || "-"}
               </Text>
-              <Text style={{ paddingBottom: 4 }}>
+              <Text style={styles.detailTextLast}>
                 Address : {formattedAddress}
               </Text>
             </View>
             <View style={{ ...styles.detailsCol, borderLeft: "1pt solid #222" }}>
-              <Text style={{ paddingBottom: 4 }}>Roll No : {studentRoll}</Text>
-              <Text style={{ paddingBottom: 4 }}>DOB : {formattedDob}</Text>
-              <Text style={{ paddingBottom: 4 }}>
+              <Text style={styles.detailText}>Roll No : {studentRoll}</Text>
+              <Text style={styles.detailText}>DOB : {formattedDob}</Text>
+              <Text style={styles.detailTextLast}>
                 Contact no : {details.phone || "-"}
               </Text>
             </View>
@@ -351,18 +402,20 @@ const PdfDocument = ({
           >
             Academic Performance : {marksheetData?.examType || "-"}
           </Text>
-          <View style={styles.tableHeader}>
-            <Text style={styles.tableCellHeader}>Subject</Text>
+          <View style={styles.tableHeader} wrap={false}>
+            <Text style={[styles.tableCellHeader, { flex: 1.4 }]}>Subject</Text>
             <Text style={styles.tableCellHeader}>Subject&apos;s Full Marks</Text>
             <Text style={styles.tableCellHeader}>Written</Text>
             <Text style={styles.tableCellHeader}>Project&apos;s Full Marks</Text>
             <Text style={styles.tableCellHeader}>Project</Text>
             <Text style={styles.tableCellHeader}>Total</Text>
-            <Text style={styles.tableCellHeader}>Grade</Text>
+            <Text style={[styles.tableCellHeader, { borderRight: "none" }]}>
+              Grade
+            </Text>
           </View>
           {(marksheetData?.subjects || []).map((subject, idx) => (
-            <View style={styles.tableRow} key={idx}>
-              <Text style={[styles.tableCell, styles.capitalize]}>
+            <View style={styles.tableRow} key={idx} wrap={false}>
+              <Text style={[styles.tableCell, styles.capitalize, { flex: 1.4 }]}>
                 {subject?.subject || "-"}
               </Text>
               <Text style={styles.tableCell}>
@@ -374,7 +427,7 @@ const PdfDocument = ({
               </Text>
               <Text style={styles.tableCell}>{subject?.projectMarks ?? 0}</Text>
               <Text style={styles.tableCell}>{subject?.totalMarks ?? 0}</Text>
-              <Text style={styles.tableCell}>
+              <Text style={[styles.tableCell, { borderRight: "none" }]}>
                 {subject?.grade || (subject?.isAdditional ? "Additional" : "-")}
               </Text>
             </View>
@@ -382,7 +435,7 @@ const PdfDocument = ({
         </View>
 
         {/* Grand Total & Result */}
-        <View style={styles.table}>
+        <View style={styles.table} wrap={false}>
           <Text style={styles.coScholasticHeader}>Grand Total &amp; Result</Text>
           {Object.entries({
             "TOTAL MARKS": `${totalExamMarks}`,
@@ -400,10 +453,11 @@ const PdfDocument = ({
             <Text
               style={{
                 flex: 3,
-                padding: 4,
+                paddingVertical: 2.5,
+                paddingHorizontal: 4,
                 textAlign: "left",
                 borderRight: "none",
-                fontSize: 10,
+                fontSize: 8.5,
               }}
             >
               Class Teacher Remarks :
@@ -413,12 +467,23 @@ const PdfDocument = ({
 
         {/* Grading Scale (when configured) */}
         {Array.isArray(gradeSystem) && gradeSystem.length > 0 ? (
-          <View style={styles.gradingTable}>
+          <View style={styles.gradingTable} wrap={false}>
             <Text style={styles.gradingHeader}>Grade Scale</Text>
             <View style={styles.gradingRow}>
-              <Text style={styles.gradingCell}>Score Range (%)</Text>
-              <Text style={styles.gradingCell}>Grade</Text>
-              <Text style={styles.gradingCell}>Performance Indicator</Text>
+              <Text style={[styles.gradingCell, { fontWeight: "bold" }]}>
+                Score Range (%)
+              </Text>
+              <Text style={[styles.gradingCell, { fontWeight: "bold" }]}>
+                Grade
+              </Text>
+              <Text
+                style={[
+                  styles.gradingCell,
+                  { fontWeight: "bold", borderRight: "none" },
+                ]}
+              >
+                Performance Indicator
+              </Text>
             </View>
             {gradeSystem.map((g, idx) => (
               <View style={styles.gradingRow} key={idx}>
@@ -426,40 +491,35 @@ const PdfDocument = ({
                   {g.scaleStartMarks} - {g.scaleEndMarks}
                 </Text>
                 <Text style={styles.gradingCell}>{g.letterGrade}</Text>
-                <Text style={styles.gradingCell}>{g.performanceIndicator}</Text>
+                <Text style={[styles.gradingCell, { borderRight: "none" }]}>
+                  {g.performanceIndicator}
+                </Text>
               </View>
             ))}
           </View>
         ) : null}
 
         {/* Remarks, Date, Place, Signatures */}
-        <View
-          style={{
-            border: "1pt solid #222",
-            borderRadius: 4,
-            padding: 8,
-            marginTop: 10,
-          }}
-        >
+        <View style={styles.signatureBox} wrap={false}>
           <View style={styles.detailsRow}>
-            <Text>Date :</Text>
+            <Text style={{ fontSize: 9 }}>Date :</Text>
           </View>
-          <View
-            style={[
-              styles.signatureRow,
-              { alignItems: "flex-end", marginTop: 10 },
-            ]}
-          >
+          <View style={styles.signatureRow}>
             <Text>Place :</Text>
             <Text>Class Teacher</Text>
-            <View style={{ alignItems: "center", width: 100 }}>
-              {signaturePreview ? (
+            <View style={{ alignItems: "center", width: 105 }}>
+              {resolvedPrincipalSignature ? (
                 <Image
-                  src={signaturePreview}
-                  style={{ width: 90, height: 45, marginBottom: 0 }}
+                  src={resolvedPrincipalSignature}
+                  style={{
+                    width: 88,
+                    height: 32,
+                    objectFit: "contain",
+                    marginBottom: 2,
+                  }}
                 />
               ) : (
-                <View style={{ height: 40 }} />
+                <View style={{ height: 32 }} />
               )}
               <Text>Principal</Text>
             </View>
@@ -467,26 +527,19 @@ const PdfDocument = ({
         </View>
 
         {/* Notes section */}
-        <View style={styles.notesSection}>
-          <Text style={{ fontSize: 10, fontWeight: "bold", marginBottom: 4 }}>
+        <View style={styles.notesSection} wrap={false}>
+          <Text style={{ fontSize: 8.5, fontWeight: "bold", marginBottom: 2 }}>
             KEEP NOTES:
           </Text>
-          <View style={styles.noteItem}>
-            <Text style={{ width: 20 }}>P</Text>
-            <Text>- For Successful Students</Text>
+          <View style={styles.noteRow}>
+            <Text>P - For Successful Students</Text>
+            <Text>F - For Unsuccessful Students</Text>
           </View>
-          <View style={styles.noteItem}>
-            <Text style={{ width: 20 }}>F</Text>
-            <Text>- For Unsuccessful Students</Text>
-          </View>
-        </View>
-
-        <View style={{ marginTop: 10, fontSize: 8 }}>
-          <Text style={{ marginBottom: 4 }}>
+          <Text style={{ fontSize: 7.5, marginBottom: 1.5 }}>
             Note: This is a computer-generated report card and does not require a
             signature.
           </Text>
-          <Text>
+          <Text style={{ fontSize: 7.5 }}>
             For any discrepancies, please contact the school administration within
             7 days of issue.
           </Text>
@@ -495,14 +548,14 @@ const PdfDocument = ({
         <View
           style={{
             position: "absolute",
-            bottom: 16,
+            bottom: 8,
             left: 0,
             right: 0,
             textAlign: "center",
           }}
         >
-          <Text style={{ fontSize: 8, color: "#666" }}>
-            Generated by {institute?.schoolName || "School"} Management System
+          <Text style={{ fontSize: 7.5, color: "#666" }}>
+            Generated by {cleanSchoolName} Management System
           </Text>
         </View>
       </Page>
@@ -520,6 +573,8 @@ const NewMarksheetComponent = ({
   const { theme } = useTheme();
   const darkMode = theme === "light";
   const institute = useSelector((state) => state.institute.institute) || {};
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [isOpeningTab, setIsOpeningTab] = useState(false);
 
   const additionalEntry = (additionalMarksheetData || []).find(
     (item) => Number(item.roll) === Number(marksheetData?.roll)
@@ -558,8 +613,8 @@ const NewMarksheetComponent = ({
     marksheetData?.studentDetails?.section || marksheetData?.section || "Sec";
   const safeExam = marksheetData?.examType || "Exam";
 
-  const handleDownload = async () => {
-    const blob = await pdf(
+  const createPdfBlob = () =>
+    pdf(
       <PdfDocument
         marksheetData={allMarkSheetData}
         gradeSystem={gradeSystem}
@@ -568,60 +623,141 @@ const NewMarksheetComponent = ({
         signaturePreview={signaturePreview}
       />
     ).toBlob();
-    saveAs(
-      blob,
-      `Marksheet_${safeStudentName}_${safeClass}_${safeSection}_${safeExam}.pdf`
-    );
+
+  const handleDownload = async () => {
+    try {
+      setIsDownloading(true);
+      const blob = await createPdfBlob();
+      saveAs(
+        blob,
+        `Marksheet_${safeStudentName}_${safeClass}_${safeSection}_${safeExam}.pdf`
+      );
+    } catch {
+      toast.error("Unable to generate marksheet PDF");
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const handleOpenInNewTab = async () => {
+    try {
+      setIsOpeningTab(true);
+      const blob = await createPdfBlob();
+      const blobUrl = URL.createObjectURL(blob);
+      const opened = window.open(blobUrl, "_blank", "noopener,noreferrer");
+      if (!opened) {
+        saveAs(
+          blob,
+          `Marksheet_${safeStudentName}_${safeClass}_${safeSection}_${safeExam}.pdf`
+        );
+      }
+      window.setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+    } catch {
+      toast.error("Unable to open marksheet PDF");
+    } finally {
+      setIsOpeningTab(false);
+    }
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          size="sm"
-          className="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 transition-all duration-300"
+        <button
+          type="button"
+          className="ms-btn-icon ms-btn-primary inline-flex items-center justify-center gap-2 px-2 text-sm"
+          aria-label={`Download marksheet PDF for ${safeStudentName}`}
         >
-          <Download className="h-4 w-4" />
-          <span className="sr-only">Download</span>
-        </Button>
+          <Download
+            className="h-4 w-4 shrink-0"
+            strokeWidth={1.5}
+            aria-hidden="true"
+          />
+          <span className="ms-btn-mobile-label">PDF</span>
+        </button>
       </DialogTrigger>
 
       <DialogContent
-        className={`sm:max-w-[900px] max-w-[95%] ${
-          darkMode ? "bg-gray-800 text-white border-gray-700" : "bg-white"
-        }`}
+        data-theme={darkMode ? "dark" : "light"}
+        className="marksheet-portal flex w-[calc(100vw-1rem)] max-w-[900px] max-h-[92dvh] flex-col gap-4 overflow-hidden rounded-2xl border border-[var(--ms-border-strong)] bg-[var(--ms-surface)] p-4 text-[var(--ms-text-primary)] shadow-[var(--ms-shadow-floating)] sm:w-[calc(100vw-2rem)] sm:p-6"
       >
-        <DialogHeader>
-          <DialogTitle
-            className={`border-b pb-3 ${
-              darkMode
-                ? "border-gray-700 text-white"
-                : "border-gray-200 text-gray-900"
-            }`}
-          >
-            Download{" "}
-            <span className="font-bold text-blue-500 underline capitalize">
-              {safeStudentName}&apos;s {safeExam}
-            </span>{" "}
-            Marksheet
+        <DialogHeader className="space-y-1 border-b border-[var(--ms-border)] pb-3 pr-10 text-left">
+          <div className="ms-signature-rule mb-2" aria-hidden="true" />
+          <DialogTitle className="text-lg font-medium tracking-normal text-[var(--ms-text-primary)]">
+            Marksheet PDF
           </DialogTitle>
+          <DialogDescription className="text-sm text-[var(--ms-text-secondary)]">
+            <span className="capitalize">{safeStudentName}</span> · Class{" "}
+            {safeClass} ({safeSection}) · {safeExam}
+          </DialogDescription>
         </DialogHeader>
-        <PDFViewer width="100%" height={700} showToolbar={true}>
-          <PdfDocument
-            institute={institute}
-            marksheetData={allMarkSheetData}
-            gradeSystem={gradeSystem}
-            totalExamMarks={totalExamMarks}
-            signaturePreview={signaturePreview}
-          />
-        </PDFViewer>
-        <div className="mt-4 flex justify-end">
-          <Button
-            onClick={handleDownload}
-            className="bg-green-600 hover:bg-green-700 text-white"
+
+        <div className="ms-pdf-frame">
+          <PDFViewer
+            width="100%"
+            height="100%"
+            showToolbar={true}
+            className="h-full w-full border-0"
           >
-            Download PDF
-          </Button>
+            <PdfDocument
+              institute={institute}
+              marksheetData={allMarkSheetData}
+              gradeSystem={gradeSystem}
+              totalExamMarks={totalExamMarks}
+              signaturePreview={signaturePreview}
+            />
+          </PDFViewer>
+        </div>
+
+        <div className="flex flex-col-reverse gap-2 border-t border-[var(--ms-border)] pt-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-[var(--ms-text-muted)]">
+            Preview unavailable on some mobile browsers — use open or download
+            below
+          </p>
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:items-center">
+            <button
+              type="button"
+              onClick={handleOpenInNewTab}
+              disabled={isOpeningTab || isDownloading}
+              className="ms-control ms-btn-secondary inline-flex w-full items-center justify-center gap-2 px-4 text-sm disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+            >
+              {isOpeningTab ? (
+                <Loader2
+                  className="h-4 w-4 animate-spin"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              ) : (
+                <ExternalLink
+                  className="h-4 w-4"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              )}
+              <span>Open in tab</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleDownload}
+              disabled={isDownloading || isOpeningTab}
+              className="ms-control ms-btn-primary inline-flex w-full items-center justify-center gap-2 px-4 text-sm disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+            >
+              {isDownloading ? (
+                <Loader2
+                  className="h-4 w-4 animate-spin"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              ) : (
+                <Download
+                  className="h-4 w-4"
+                  strokeWidth={1.5}
+                  aria-hidden="true"
+                />
+              )}
+              <span>{isDownloading ? "Preparing PDF" : "Download PDF"}</span>
+            </button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

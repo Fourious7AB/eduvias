@@ -1,0 +1,954 @@
+/* Scoped tokens, layout, responsive tables, and native dialog rules for /marksheet only.
+   All rules are isolated to .marksheet-scope, .marksheet-dialog, and .marksheet-portal
+   so zero global styles or other routes are affected. */
+
+.marksheet-scope,
+.marksheet-dialog,
+.marksheet-portal {
+  /* Light visual palette (calm plum-tinted neutral ramp paired with Vais Academy purple-to-pink accent) */
+  --ms-bg: #f8f7fb;
+  --ms-surface: #ffffff;
+  --ms-surface-raised: #f4f2f8;
+  --ms-surface-hover: #faf8fc;
+  --ms-border: rgba(24, 20, 36, 0.1);
+  --ms-border-strong: rgba(24, 20, 36, 0.18);
+
+  --ms-text-primary: #171422;
+  --ms-text-secondary: #4e4a5e;
+  --ms-text-muted: #67627a;
+
+  --ms-accent: #9333ea;
+  --ms-accent-gradient: linear-gradient(90deg, #9333ea 0%, #ec4899 100%);
+  --ms-accent-gradient-hover: linear-gradient(90deg, #7e22ce 0%, #db2777 100%);
+  --ms-accent-fg: #ffffff;
+  --ms-accent-shadow: 0 2px 6px rgba(147, 51, 234, 0.2);
+  --ms-accent-shadow-hover: 0 4px 12px rgba(147, 51, 234, 0.28);
+
+  --ms-positive: #15803d;
+  --ms-positive-bg: rgba(21, 128, 61, 0.09);
+  --ms-positive-border: rgba(21, 128, 61, 0.22);
+
+  --ms-negative: #b91c1c;
+  --ms-negative-bg: rgba(185, 28, 28, 0.08);
+  --ms-negative-border: rgba(185, 28, 28, 0.22);
+
+  --ms-shadow-card: 0 1px 2px rgba(24, 20, 36, 0.05);
+  --ms-shadow-floating: 0 8px 24px rgba(24, 20, 36, 0.08);
+  --ms-focus-ring: rgba(147, 51, 234, 0.42);
+
+  --ms-target-size: 36px;
+  --ms-target-compact: 32px;
+  --ms-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color: var(--ms-text-primary);
+  overflow-wrap: break-word;
+}
+
+.marksheet-scope[data-theme="dark"],
+.marksheet-dialog[data-theme="dark"],
+.marksheet-portal[data-theme="dark"] {
+  /* Dark visual palette (quiet ink-graphite ramp paired with Vais Academy purple-to-pink accent) */
+  --ms-bg: #121318;
+  --ms-surface: #181920;
+  --ms-surface-raised: #22232d;
+  --ms-surface-hover: #272834;
+  --ms-border: rgba(237, 235, 244, 0.09);
+  --ms-border-strong: rgba(237, 235, 244, 0.18);
+
+  --ms-text-primary: #efedf5;
+  --ms-text-secondary: #a8a4b8;
+  --ms-text-muted: #8d899e;
+
+  --ms-accent: #9333ea;
+  --ms-accent-gradient: linear-gradient(90deg, #9333ea 0%, #ec4899 100%);
+  --ms-accent-gradient-hover: linear-gradient(90deg, #7e22ce 0%, #db2777 100%);
+  --ms-accent-fg: #ffffff;
+  --ms-accent-shadow: 0 2px 8px rgba(147, 51, 234, 0.28);
+  --ms-accent-shadow-hover: 0 4px 14px rgba(147, 51, 234, 0.36);
+
+  --ms-positive: #4cc38a;
+  --ms-positive-bg: rgba(76, 195, 138, 0.12);
+  --ms-positive-border: rgba(76, 195, 138, 0.26);
+
+  --ms-negative: #f0656a;
+  --ms-negative-bg: rgba(240, 101, 106, 0.12);
+  --ms-negative-border: rgba(240, 101, 106, 0.28);
+
+  --ms-shadow-card: none;
+  --ms-shadow-floating: 0 12px 32px rgba(0, 0, 0, 0.48);
+  --ms-focus-ring: rgba(192, 132, 252, 0.55);
+}
+
+/* Touch targets adapt to coarse pointers (WCAG 2.5.5 & 2.5.8) */
+@media (pointer: coarse) {
+  .marksheet-scope,
+  .marksheet-dialog,
+  .marksheet-portal {
+    --ms-target-size: 44px;
+    --ms-target-compact: 44px;
+  }
+}
+
+/* Override global index.css lavender border (* { border-color: #c4a7db }) strictly inside /marksheet */
+.marksheet-scope,
+.marksheet-scope *,
+.marksheet-dialog,
+.marksheet-dialog *,
+.marksheet-portal,
+.marksheet-portal * {
+  border-color: var(--ms-border);
+}
+
+.marksheet-scope {
+  background-color: var(--ms-bg);
+  min-block-size: 100dvh;
+  inline-size: 100%;
+  min-inline-size: 0;
+  overflow-x: clip;
+  scroll-padding-bottom: 5.5rem;
+}
+
+/* Typography rhythm */
+.ms-page-title {
+  font-size: clamp(1.5rem, 1.25rem + 1.1vw, 2rem);
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ms-text-primary);
+  text-wrap: balance;
+}
+
+.marksheet-scope h2,
+.marksheet-scope h3,
+.marksheet-dialog h1,
+.marksheet-dialog h2,
+.marksheet-portal h2 {
+  text-wrap: balance;
+}
+
+.marksheet-scope p,
+.marksheet-dialog p,
+.marksheet-portal p {
+  text-wrap: pretty;
+}
+
+.ms-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Brand purple-to-pink accent rule for page and dialog headings */
+.ms-signature-rule {
+  display: block;
+  inline-size: 56px;
+  block-size: 3px;
+  border-radius: 9999px;
+  background-color: var(--ms-accent);
+  background-image: var(--ms-accent-gradient);
+}
+
+/* ==========================================================================
+   Gradient-Matched Mode Toggle (Single-Row Accessible Tablist)
+   ========================================================================== */
+.ms-mode-tablist {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 4px;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  scroll-snap-type: inline proximity;
+  padding: 4px;
+  border-radius: 12px;
+  background-color: var(--ms-surface);
+  border: 1px solid var(--ms-border-strong);
+  box-shadow: var(--ms-shadow-card);
+}
+
+.ms-mode-tablist::-webkit-scrollbar {
+  display: none;
+}
+
+.ms-mode-tab {
+  position: relative;
+  flex: none;
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-block-size: var(--ms-target-size);
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  background-color: transparent;
+  color: var(--ms-text-secondary);
+  cursor: pointer;
+  transition: background-color 150ms var(--ms-ease), color 150ms var(--ms-ease), box-shadow 150ms var(--ms-ease);
+}
+
+@media (max-width: 479px) {
+  .ms-mode-tab {
+    padding: 6px 11px;
+    font-size: 13px;
+  }
+}
+
+.ms-mode-tab:hover:not([aria-selected="true"]) {
+  background-color: var(--ms-surface-raised);
+  color: var(--ms-text-primary);
+}
+
+.ms-mode-tab:focus-visible {
+  outline: 2px solid var(--ms-focus-ring);
+  outline-offset: 2px;
+}
+
+.ms-mode-tab[aria-selected="true"] {
+  background-color: var(--ms-accent);
+  background-image: var(--ms-accent-gradient);
+  color: var(--ms-accent-fg);
+  box-shadow: var(--ms-accent-shadow);
+}
+
+.ms-mode-tab[aria-selected="true"]:hover {
+  background-image: var(--ms-accent-gradient-hover);
+  box-shadow: var(--ms-accent-shadow-hover);
+}
+
+/* Non-color active state indicator (WCAG 1.4.1 & Forced Colors safe via border) */
+.ms-mode-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  inset: auto 14px 3px;
+  border-block-end: 2px solid currentColor;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+/* Compact completed exam pills inside Annual results card */
+.ms-exam-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--ms-border);
+  background-color: var(--ms-surface-raised);
+  color: var(--ms-text-primary);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.ms-exam-pill-meta {
+  color: var(--ms-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.ms-exam-pill-total {
+  border-color: var(--ms-border-strong);
+  font-weight: 500;
+}
+
+/* Cards & surfaces */
+.ms-card {
+  background-color: var(--ms-surface);
+  border: 1px solid var(--ms-border);
+  border-radius: 16px;
+  box-shadow: var(--ms-shadow-card);
+}
+
+.ms-surface-raised {
+  background-color: var(--ms-surface-raised);
+  border: 1px solid var(--ms-border);
+}
+
+/* Interactive controls */
+.ms-control {
+  min-block-size: var(--ms-target-size);
+  border-radius: 8px;
+  transition: background-color 150ms var(--ms-ease), border-color 150ms var(--ms-ease), color 150ms var(--ms-ease), box-shadow 150ms var(--ms-ease), transform 120ms var(--ms-ease);
+}
+
+.ms-control:focus-visible {
+  outline: 2px solid var(--ms-focus-ring);
+  outline-offset: 2px;
+}
+
+.ms-control:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.ms-btn-primary {
+  background-color: var(--ms-accent);
+  background-image: var(--ms-accent-gradient);
+  color: var(--ms-accent-fg);
+  border: 1px solid transparent;
+  box-shadow: var(--ms-accent-shadow);
+  font-weight: 500;
+}
+
+.ms-btn-primary:hover:not(:disabled) {
+  background-image: var(--ms-accent-gradient-hover);
+  box-shadow: var(--ms-accent-shadow-hover);
+}
+
+.ms-btn-secondary {
+  background-color: var(--ms-surface);
+  color: var(--ms-text-primary);
+  border: 1px solid var(--ms-border-strong);
+  font-weight: 500;
+}
+
+.ms-btn-secondary:hover:not(:disabled) {
+  background-color: var(--ms-surface-raised);
+}
+
+.ms-btn-icon {
+  min-block-size: var(--ms-target-compact);
+  min-inline-size: var(--ms-target-compact);
+  border-radius: 8px;
+  transition: background-color 150ms var(--ms-ease), border-color 150ms var(--ms-ease), color 150ms var(--ms-ease), box-shadow 150ms var(--ms-ease), transform 120ms var(--ms-ease);
+}
+
+.ms-btn-icon:focus-visible {
+  outline: 2px solid var(--ms-focus-ring);
+  outline-offset: 2px;
+}
+
+.ms-btn-icon:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Quiet status & grade tags */
+.ms-grade-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 2rem;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--ms-border);
+  background-color: var(--ms-surface-raised);
+  color: var(--ms-text-primary);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.ms-grade-tag[data-fail="true"] {
+  border-color: var(--ms-negative-border);
+  background-color: var(--ms-negative-bg);
+  color: var(--ms-negative);
+}
+
+.ms-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 52px;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.ms-status-pill[data-status="pass"] {
+  background-color: var(--ms-positive-bg);
+  border-color: var(--ms-positive-border);
+  color: var(--ms-positive);
+}
+
+.ms-status-pill[data-status="fail"] {
+  background-color: var(--ms-negative-bg);
+  border-color: var(--ms-negative-border);
+  color: var(--ms-negative);
+}
+
+/* ==========================================================================
+   Main Marksheet Results Table — Container-Queried Responsive Ledger
+   ========================================================================== */
+.ms-table-region {
+  container: marksheet-table / inline-size;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+}
+
+.ms-table-region:focus-visible {
+  outline: 2px solid var(--ms-focus-ring);
+  outline-offset: -2px;
+}
+
+.ms-ledger-table {
+  inline-size: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ms-ledger-table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  background-color: var(--ms-surface-raised);
+  color: var(--ms-text-secondary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ms-border);
+  white-space: nowrap;
+}
+
+.ms-ledger-table tbody th,
+.ms-ledger-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ms-border);
+  vertical-align: middle;
+  color: var(--ms-text-primary);
+}
+
+.ms-ledger-table tbody tr:last-child th,
+.ms-ledger-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ms-ledger-table tbody tr {
+  transition: background-color 140ms var(--ms-ease);
+}
+
+.ms-ledger-table tbody tr:hover {
+  background-color: var(--ms-surface-hover);
+}
+
+.ms-ledger-table tbody tr:focus-within {
+  background-color: var(--ms-surface-hover);
+}
+
+/* Sticky row header column for horizontal N-exam Annual ledger scrolling */
+.ms-annual-ledger thead th.ms-col-sticky {
+  position: sticky;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  z-index: 3;
+  background-color: var(--ms-surface-raised);
+  border-right: 1px solid var(--ms-border);
+  box-shadow: 4px 0 8px -4px rgba(24, 20, 36, 0.12);
+  min-inline-size: 180px;
+}
+
+.ms-annual-ledger tbody th.ms-col-sticky {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background-color: var(--ms-surface);
+  border-right: 1px solid var(--ms-border);
+  box-shadow: 4px 0 8px -4px rgba(24, 20, 36, 0.12);
+  min-inline-size: 180px;
+}
+
+.marksheet-scope[data-theme="dark"] .ms-annual-ledger thead th.ms-col-sticky,
+.marksheet-scope[data-theme="dark"] .ms-annual-ledger tbody th.ms-col-sticky {
+  box-shadow: 4px 0 10px -4px rgba(0, 0, 0, 0.42);
+}
+
+.ms-annual-ledger tbody tr:hover th.ms-col-sticky,
+.ms-annual-ledger tbody tr:focus-within th.ms-col-sticky {
+  background-color: var(--ms-surface-hover);
+}
+
+/* Desktop compact action button labels stay screen-reader-only until container narrows */
+.ms-btn-mobile-label {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.ms-mobile-roll-meta {
+  display: none;
+}
+
+@container marksheet-table (width < 760px) {
+  .ms-ledger-table,
+  .ms-ledger-table tbody {
+    display: block;
+    inline-size: 100%;
+  }
+
+  /* MANDATORY per responsive-table: hide column headers from layout and screen readers */
+  .ms-ledger-table thead {
+    display: none;
+  }
+
+  .ms-ledger-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .ms-ledger-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--ms-border);
+    border-radius: 12px;
+    background-color: var(--ms-surface);
+  }
+
+  .ms-ledger-table tbody tr:hover {
+    background-color: var(--ms-surface);
+    border-color: var(--ms-border-strong);
+  }
+
+  .ms-ledger-table tbody th,
+  .ms-ledger-table tbody td {
+    display: block;
+    padding: 0;
+    border-bottom: none;
+    text-align: left !important;
+    min-inline-size: 0;
+  }
+
+  /* Hide desktop S.No index in mobile cards */
+  .ms-ledger-table tbody td.ms-col-sno {
+    display: none;
+  }
+
+  /* Row header (Student) spans full top of card */
+  .ms-ledger-table tbody th.ms-col-student {
+    grid-column: 1 / -1;
+    order: -2;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ms-border);
+  }
+
+  .ms-annual-ledger tbody th.ms-col-sticky {
+    position: static;
+    inset-inline-start: auto;
+    z-index: auto;
+    min-inline-size: 0;
+    border-right: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .ms-annual-ledger tbody tr:hover th.ms-col-sticky,
+  .ms-annual-ledger tbody tr:focus-within th.ms-col-sticky {
+    background-color: transparent;
+  }
+
+  .ms-mobile-roll-meta {
+    display: inline-block;
+  }
+
+  /* Hide standalone Roll cell since it renders cleanly in the card header */
+  .ms-ledger-table tbody td.ms-col-roll {
+    display: none;
+  }
+
+  .ms-ledger-table tbody td[data-label]::before {
+    content: var(--col-label);
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--ms-text-muted);
+    margin-bottom: 2px;
+  }
+
+  .ms-ledger-table tbody td.ms-col-marks {
+    grid-column: 1 / -1;
+  }
+
+  .ms-ledger-table tbody td.ms-col-actions {
+    grid-column: 1 / -1;
+    padding-top: 12px;
+    border-top: 1px solid var(--ms-border);
+  }
+
+  .ms-ledger-table tbody td.ms-col-actions .ms-actions-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    inline-size: 100%;
+  }
+
+  .ms-ledger-table tbody td.ms-col-actions .ms-btn-icon {
+    inline-size: 100%;
+    min-block-size: max(40px, var(--ms-target-compact));
+    padding-inline: 12px;
+  }
+
+  .ms-btn-mobile-label {
+    position: static;
+    inline-size: auto;
+    block-size: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ==========================================================================
+   Modal Subject Breakdown Table — Container-Queried Responsive Ledger
+   ========================================================================== */
+.ms-subjects-region {
+  container: marksheet-subjects / inline-size;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  border-radius: 12px;
+}
+
+.ms-subjects-region:focus-visible {
+  outline: 2px solid var(--ms-focus-ring);
+  outline-offset: -2px;
+}
+
+.ms-subjects-table {
+  inline-size: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ms-subjects-table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  background-color: var(--ms-surface-raised);
+  color: var(--ms-text-secondary);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ms-border);
+  white-space: nowrap;
+}
+
+.ms-subjects-table tbody th,
+.ms-subjects-table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ms-border);
+  vertical-align: middle;
+  color: var(--ms-text-primary);
+}
+
+.ms-subjects-table tbody tr:last-child th,
+.ms-subjects-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ms-subjects-table tbody tr[data-fail="true"] {
+  background-color: var(--ms-negative-bg);
+}
+
+/* Sticky Subject row header for wide N-exam matrix scrolling inside View dialog */
+.ms-matrix-table thead th.ms-sub-sticky {
+  position: sticky;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  z-index: 3;
+  background-color: var(--ms-surface-raised);
+  border-right: 1px solid var(--ms-border);
+  box-shadow: 4px 0 8px -4px rgba(24, 20, 36, 0.12);
+  min-inline-size: 130px;
+}
+
+.ms-matrix-table tbody th.ms-sub-sticky {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  background-color: var(--ms-surface);
+  border-right: 1px solid var(--ms-border);
+  box-shadow: 4px 0 8px -4px rgba(24, 20, 36, 0.12);
+  min-inline-size: 130px;
+}
+
+.marksheet-dialog[data-theme="dark"] .ms-matrix-table thead th.ms-sub-sticky,
+.marksheet-dialog[data-theme="dark"] .ms-matrix-table tbody th.ms-sub-sticky {
+  box-shadow: 4px 0 10px -4px rgba(0, 0, 0, 0.42);
+}
+
+.ms-matrix-table tbody tr[data-fail="true"] th.ms-sub-sticky {
+  background-color: var(--ms-surface);
+  background-color: color-mix(in oklab, var(--ms-surface) 92%, var(--ms-negative));
+}
+
+.ms-subjects-table tfoot th,
+.ms-subjects-table tfoot td {
+  padding: 10px 14px;
+  border-top: 1px solid var(--ms-border-strong);
+  background-color: var(--ms-surface-raised);
+  font-weight: 500;
+  color: var(--ms-text-primary);
+}
+
+@container marksheet-subjects (width < 580px) {
+  .ms-subjects-table,
+  .ms-subjects-table tbody {
+    display: block;
+    inline-size: 100%;
+  }
+
+  .ms-subjects-table thead {
+    display: none;
+  }
+
+  .ms-subjects-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background-color: var(--ms-surface-raised);
+  }
+
+  .ms-subjects-table tbody tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+    padding: 12px;
+    border: 1px solid var(--ms-border);
+    border-radius: 8px;
+    background-color: var(--ms-surface);
+  }
+
+  .ms-subjects-table tbody tr[data-fail="true"] {
+    border-color: var(--ms-negative-border);
+    background-color: var(--ms-negative-bg);
+  }
+
+  .ms-subjects-table tbody th,
+  .ms-subjects-table tbody td {
+    display: block;
+    padding: 0;
+    border-bottom: none;
+    text-align: left !important;
+    min-inline-size: 0;
+  }
+
+  .ms-subjects-table tbody th.ms-sub-name {
+    grid-column: 1 / -1;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ms-border);
+  }
+
+  .ms-matrix-table tbody th.ms-sub-sticky {
+    position: static;
+    inset-inline-start: auto;
+    z-index: auto;
+    min-inline-size: 0;
+    border-right: none;
+    box-shadow: none;
+    background-color: transparent;
+  }
+
+  .ms-matrix-table tbody tr[data-fail="true"] th.ms-sub-sticky {
+    background-color: transparent;
+  }
+
+  .ms-subjects-table tfoot,
+  .ms-subjects-table tfoot tr {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+  }
+
+  .ms-subjects-table tfoot {
+    display: block;
+    padding: 8px;
+    background-color: var(--ms-surface-raised);
+    border-top: 1px solid var(--ms-border);
+  }
+
+  .ms-subjects-table tfoot tr {
+    padding: 12px;
+    border: 1px solid var(--ms-border-strong);
+    border-radius: 8px;
+    background-color: var(--ms-surface);
+  }
+
+  .ms-subjects-table tfoot th,
+  .ms-subjects-table tfoot td {
+    display: block;
+    padding: 0;
+    border-top: none;
+    background-color: transparent;
+    text-align: left !important;
+  }
+
+  .ms-subjects-table tfoot th {
+    grid-column: 1 / -1;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--ms-border);
+  }
+
+  .ms-subjects-table tfoot td[data-label]::before {
+    content: var(--col-label);
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--ms-text-muted);
+    margin-bottom: 2px;
+  }
+
+  .ms-subjects-table tbody td[data-label]::before {
+    content: var(--col-label);
+    display: block;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 400;
+    color: var(--ms-text-muted);
+    margin-bottom: 2px;
+  }
+}
+
+/* ==========================================================================
+   Native <dialog> Transcript Sheet (Top-Layer + Scroll Containment)
+   ========================================================================== */
+dialog.marksheet-dialog {
+  padding: 0;
+  margin: auto;
+  inline-size: min(56rem, calc(100vw - 1.5rem));
+  max-inline-size: 56rem;
+  max-block-size: min(90dvh, 860px);
+  border: 1px solid var(--ms-border-strong);
+  border-radius: 16px;
+  background-color: var(--ms-surface);
+  color: var(--ms-text-primary);
+  box-shadow: var(--ms-shadow-floating);
+  overflow: hidden;
+}
+
+/* Scope display strictly to [open] so closed state is never overridden */
+dialog.marksheet-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+/* MANDATORY scroll containment rules for modal dialogs */
+dialog.marksheet-dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog.marksheet-dialog::backdrop {
+  background: rgba(10, 12, 18, 0.56);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Fluid responsive PDF viewer container inside NewMarksheetComponent dialog */
+.ms-pdf-frame {
+  inline-size: 100%;
+  block-size: clamp(300px, 56dvh, 660px);
+  min-block-size: 260px;
+  border-radius: 10px;
+  border: 1px solid var(--ms-border);
+  background-color: var(--ms-surface-raised);
+  overflow: hidden;
+}
+
+@media (max-width: 639px) {
+  dialog.marksheet-dialog {
+    inline-size: calc(100vw - 1rem);
+    max-block-size: 92dvh;
+    border-radius: 14px;
+  }
+
+  .ms-pdf-frame {
+    block-size: clamp(240px, 46dvh, 420px);
+    min-block-size: 220px;
+  }
+}
+
+/* Native <details> chevron animation for compact grade scale */
+.ms-details-summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.ms-details-summary::-webkit-details-marker {
+  display: none;
+}
+
+details[open] .ms-details-chevron {
+  transform: rotate(180deg);
+}
+
+.ms-details-chevron {
+  transition: transform 180ms var(--ms-ease);
+}
+
+@media (forced-colors: active) {
+  .ms-mode-tablist {
+    border-color: CanvasText;
+  }
+
+  .ms-mode-tab {
+    border-color: transparent;
+  }
+
+  .ms-mode-tab[aria-selected="true"] {
+    background-color: Highlight;
+    background-image: none;
+    color: HighlightText;
+    border-color: CanvasText;
+  }
+
+  .ms-mode-tab[aria-selected="true"]::after {
+    border-block-end-color: HighlightText;
+  }
+
+  .ms-btn-primary {
+    background-color: ButtonFace;
+    background-image: none;
+    color: ButtonText;
+    border-color: ButtonBorder;
+  }
+
+  .ms-btn-primary:hover:not(:disabled) {
+    background-color: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-control,
+  .ms-btn-icon,
+  .ms-mode-tab,
+  .ms-ledger-table tbody tr,
+  .ms-details-chevron {
+    transition: none;
+  }
+
+  .ms-control:active:not(:disabled),
+  .ms-btn-icon:active:not(:disabled) {
+    transform: none;
+  }
+}

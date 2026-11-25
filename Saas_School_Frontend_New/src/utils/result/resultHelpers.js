@@ -11,6 +11,119 @@ export const DEFAULT_GRADE_SCALE = [
   { scaleStartMarks: 0, scaleEndMarks: 32, letterGrade: "F", performanceIndicator: "Fail" },
 ];
 
+export const FIXED_ANNUAL_SEVEN_GRADES = [
+  { percentageStart: 90, letterGrade: "AA", performanceIndicator: "Outstanding" },
+  { percentageStart: 80, letterGrade: "A+", performanceIndicator: "Excellent" },
+  { percentageStart: 60, letterGrade: "A", performanceIndicator: "Very Good" },
+  { percentageStart: 45, letterGrade: "B+", performanceIndicator: "Good" },
+  { percentageStart: 35, letterGrade: "B", performanceIndicator: "Satisfactory" },
+  { percentageStart: 25, letterGrade: "C", performanceIndicator: "Marginal" },
+  { percentageStart: 0, letterGrade: "D", performanceIndicator: "Disqualified" },
+];
+
+export const getDynamicAcademicYearRange = (referenceDate = new Date()) => {
+  const currentYear =
+    referenceDate instanceof Date && !Number.isNaN(referenceDate.getTime())
+      ? referenceDate.getFullYear()
+      : new Date().getFullYear();
+  return `${currentYear - 1} to ${currentYear}`;
+};
+
+const resolveSevenGradeTemplates = (gradeSystem = []) => {
+  if (!Array.isArray(gradeSystem) || gradeSystem.length !== 7) {
+    return FIXED_ANNUAL_SEVEN_GRADES;
+  }
+  const seenStarts = new Set();
+  const valid = [];
+  for (const g of gradeSystem) {
+    const letter = typeof g?.letterGrade === "string" ? g.letterGrade.trim() : "";
+    const start = Number(g?.scaleStartMarks);
+    if (!letter || !Number.isFinite(start) || start < 0 || start > 100 || seenStarts.has(start)) {
+      return FIXED_ANNUAL_SEVEN_GRADES;
+    }
+    seenStarts.add(start);
+    valid.push({
+      percentageStart: start,
+      letterGrade: letter,
+      performanceIndicator:
+        typeof g?.performanceIndicator === "string" ? g.performanceIndicator.trim() : "",
+    });
+  }
+  return valid.sort((a, b) => b.percentageStart - a.percentageStart);
+};
+
+export const buildDynamicSevenGradeScale = (gradeSystem = [], maxTotalMarks = 0) => {
+  const templates = resolveSevenGradeTemplates(gradeSystem);
+  const totalMax = Math.max(0, Math.round(Number(maxTotalMarks) || 0));
+
+  const scale = [];
+  let prevMin = totalMax + 1;
+  let prevPctStart = 101;
+
+  for (let i = 0; i < templates.length; i += 1) {
+    const tier = templates[i];
+    const isFirst = i === 0;
+    const isLast = i === templates.length - 1;
+    const pctStart = isLast ? 0 : Math.max(0, Math.min(100, Number(tier.percentageStart) || 0));
+    const pctEnd = isFirst ? 100 : Math.max(0, prevPctStart - 1);
+
+    const tierMax = isFirst ? totalMax : Math.max(0, prevMin - 1);
+    const rawMin =
+      pctStart === 0 || totalMax === 0
+        ? 0
+        : Math.ceil(Number(((pctStart * totalMax) / 100).toFixed(8)));
+    const tierMin = isLast ? 0 : Math.min(tierMax, Math.max(0, rawMin));
+
+    scale.push({
+      minMarks: tierMin,
+      maxMarks: tierMax,
+      percentageStart: pctStart,
+      percentageEnd: pctEnd,
+      letterGrade: tier.letterGrade,
+      performanceIndicator: tier.performanceIndicator,
+    });
+
+    prevMin = tierMin;
+    prevPctStart = pctStart;
+  }
+
+  return scale;
+};
+
+export const getGradeFromDynamicScale = (obtainedMarks, dynamicScale = []) => {
+  if (!Array.isArray(dynamicScale) || dynamicScale.length === 0) {
+    return { letterGrade: "D", performanceIndicator: "Disqualified" };
+  }
+  const totalMax = Math.max(0, Number(dynamicScale[0]?.maxMarks) || 0);
+  const clamped = Math.max(0, Math.min(totalMax, Number(obtainedMarks) || 0));
+  const floored = Math.floor(clamped);
+
+  if (totalMax === 0 || floored <= 0) {
+    const lowest = dynamicScale[dynamicScale.length - 1];
+    return {
+      letterGrade: lowest.letterGrade,
+      performanceIndicator: lowest.performanceIndicator,
+    };
+  }
+
+  const exactMatch = dynamicScale.find(
+    (tier) => floored >= Number(tier.minMarks) && floored <= Number(tier.maxMarks)
+  );
+  if (exactMatch) {
+    return {
+      letterGrade: exactMatch.letterGrade,
+      performanceIndicator: exactMatch.performanceIndicator,
+    };
+  }
+
+  const lowerMatch = dynamicScale.find((tier) => floored >= Number(tier.minMarks));
+  const resolved = lowerMatch || dynamicScale[dynamicScale.length - 1];
+  return {
+    letterGrade: resolved.letterGrade,
+    performanceIndicator: resolved.performanceIndicator,
+  };
+};
+
 export const round2 = (value) => {
   const num = Number(value);
   if (!Number.isFinite(num)) return 0;

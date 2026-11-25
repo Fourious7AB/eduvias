@@ -23,7 +23,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeSocialFeed } from "./utils/auth/socialFeedAuth";
 import { disconnectSocket } from "./utils/socket";
-import GoToTopComponent from "./components/Scroll/GoToTopComponent";
 
 function App() {
   const location = useLocation();
@@ -93,7 +92,6 @@ function App() {
 
             {/* Conditionally render the footer */}
             {!shouldHideComponents && <Footer />}
-            <GoToTopComponent />
           </SidebarInset>
         </SidebarProvider>
       </BreadcrumbProvider>

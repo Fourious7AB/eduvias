@@ -30,6 +30,11 @@ const resultUrlApi = {
     url: `${resultApi}/marksheet`,
   },
 
+  // for annual report card
+  annualMarksheet: {
+    url: `${resultApi}/marksheet/annual`,
+  },
+
   // Mark register
   searchStudentForMark: {
     url: `${searchResultApi}`,
